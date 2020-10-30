@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface PilotDb extends JpaRepository<PilotModel, Long> {
     List<PilotModel> findByOrderByIdAsc();
+    PilotModel getPilotModelByNip(String nip);
 }

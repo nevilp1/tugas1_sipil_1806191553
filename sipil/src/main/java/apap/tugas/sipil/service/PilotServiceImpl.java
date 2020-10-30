@@ -4,6 +4,8 @@ import apap.tugas.sipil.model.PilotModel;
 import apap.tugas.sipil.repository.PilotDb;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 import java.util.Random;
 import javax.transaction.Transactional;
 import java.util.Date;
@@ -45,5 +47,31 @@ public class PilotServiceImpl implements PilotService{
         nip += Character.toString(random2).toUpperCase();
 
         return nip;
+    }
+
+    @Override
+    public PilotModel getPilotByNip(String nip) {
+        PilotModel pilot = pilotDb.getPilotModelByNip(nip);
+        return pilot;
+    }
+
+    @Override
+    public PilotModel updatePilot(PilotModel pilot) {
+        PilotModel targetPilot = pilotDb.findById(pilot.getId()).get();
+
+        try {
+            targetPilot.setNama(pilot.getNama());
+            targetPilot.setNik(pilot.getNik());
+            targetPilot.setTempatLahir(pilot.getTempatLahir());
+            targetPilot.setTanggalLahir(pilot.getTanggalLahir());
+            targetPilot.setJenisKelamin(pilot.getJenisKelamin());
+            targetPilot.setAkademi(pilot.getAkademi());
+            targetPilot.setMaskapai(pilot.getMaskapai());
+            targetPilot.setNip(generateID(pilot));
+            pilotDb.save(targetPilot);
+            return targetPilot;
+        } catch (NullPointerException nullException){
+            return null;
+        }
     }
 }

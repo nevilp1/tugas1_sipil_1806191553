@@ -41,8 +41,8 @@
                 <td th:text="${pilot.tanggalLahir}"></td>
                 <td th:text="${pilot.jenisKelamin}"></td>
                 <td>
-                    <a th:href="@{/pilot/view?id=}+${pilot.id}" class="btn btn-primary">View Pilot</a>
-                    <a th:href="@{/pilot/change/}+${pilot.id}" class="btn btn-outline-primary">Change Data</a>
+                    <a th:href="@{/pilot/}+${pilot.nip}" class="btn btn-primary">View Pilot</a>
+                    <a th:href="@{/pilot/ubah/}+${pilot.nip}" class="btn btn-success">Change Data</a>
                     <a th:href="@{/pilot/delete/}+${pilot.id}" class="btn btn-danger">Delete</a>
                 </td>
 

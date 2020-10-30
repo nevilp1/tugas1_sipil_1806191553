@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Change Data Pilot</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+
+<div class="d-flex flex-column justify-content-center" style="padding:30px;">
+    <div class="card" style="width:50%;align-self:center;">
+        <h3 class="card-header" style="text-align:center;background-color:#001b36;color:white;">Ubah Pilot</h3>
+        <div class="card-body">
+            <form th:action="@{/pilot/ubah/}+ '${nipPilot}' "th:object="${pilot}" method="POST">
+                <input type="hidden" th:field="*{id}">
+
+                <input type="hidden" th:value="${nip}" name="nip">
+                <div class="form-group">
+                    <label for="usr">Nama:</label>
+                    <input type="text" class="form-control" id="usr" name="nama" th:value="*{nama}"required>
+                </div>
+                <div class="form-group">
+                    <label for="nik">NIK:</label>
+                    <input type="number" class="form-control" id="nik" name="nik" th:value="*{nik}" required>
+                </div>
+                <div class="form-group">
+                    <label for="tempat">Tempat Lahir:</label>
+                    <input type="text" class="form-control" id="tempat" name="tempatLahir" th:value="*{tempatLahir}" required>
+                </div>
+                <div class="form-group">
+                    <label for="tgl">Tanggal Lahir:</label>
+                    <input type="date" class="form-control" id="tgl" name="tanggalLahir" th:value="*{tanggalLahir}" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="jk"> Jenis Kelamin: </label>
+                    <select name="jenisKelamin" class="form-control" id="jk" th:value="*{jenisKelamin}">
+                        <option value="1" th:text="Laki-laki"></option>
+                        <option value="2" th:text="Perempuan"></option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="select_list"> Sekolah: </label>
+                    <select th:field="*{akademi}" class="form-control" id="select_list">
+                        <option th:each="akademi : ${listAkademi}" th:value="${akademi.id}" th:text="${akademi.nama}"></option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="select_list1"> Maskapai </label>
+                    <select th:field="*{maskapai}" class="form-control" id="select_list1">
+                        <option th:each="maskapai : ${listMaskapai}" th:value="${maskapai.id}" th:text="${maskapai.namaMaskapai}"></option>
+                    </select>
+                </div>
+
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </form>
+        </div>
+
+    </div>
+
+</div>
+</body>
+</html>

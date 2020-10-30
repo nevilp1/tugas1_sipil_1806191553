@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -67,6 +68,38 @@ public class PilotController {
         model.addAttribute("idPilot",pilot.getId());
         return "tambah-pilot";
     }
+    @GetMapping("/pilot/{nip}")
+    private String viewPilot(
+            @PathVariable String nip,
+            Model model
+    ){
+        model.addAttribute("nip",nip);
+        PilotModel pilot = pilotService.getPilotByNip(nip);
+        model.addAttribute("pilot",pilot);
+        return "lihat-pilot";
+    }
 
+    @GetMapping("/pilot/ubah/{nipPilot}")
+    private String changePilot(
+            @PathVariable String nipPilot,
+            Model model
+    ){
+        model.addAttribute("nip", nipPilot);
+        PilotModel pilot = pilotService.getPilotByNip(nipPilot);
+        model.addAttribute("listMaskapai",maskapaiService.getListMaskapai());
+        model.addAttribute("listAkademi",akademiService.getAkademiList());
+        model.addAttribute("pilot",pilot);
+        return "change-pilot";
+    }
+
+    @PostMapping("/pilot/ubah/{nipPilot}")
+    private String changePilotSubmit(
+            @ModelAttribute PilotModel pilot, Model model
+    ){
+        pilotService.updatePilot(pilot);
+        model.addAttribute("nip", pilot.getNip());
+
+        return "change-pilot-submit";
+    }
 
 }
