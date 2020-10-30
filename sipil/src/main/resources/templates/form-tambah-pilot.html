@@ -9,31 +9,58 @@
 <body>
 <nav th:replace="fragments/fragment :: navbar"></nav>
 
-<h3>Tambah Pilot</h3>
-<form th:action="@{/pilot/tambah}"th:object="${pilot}" method="POST">
-    Nama: <br>
-    <input type="text" name="nama"/>
-    <br><br>
-    Alamat: <br>
-    <input type="text" name="nik"/>
-    <br><br>
-    Tempat Lahir: <br>
-    <input type="text" name="tempatLahir"/>
-    <br><br>
-    Tanggal Lahir: <br>
-    <input type="date" name="tanggalLahir"/>
-    <br><br>
-    Jenis Kelamin: <br>
-    <input type="text" name="jenisKelamin"/>
-    <br><br>
-    Sekolah: <br>
-    <input type="text" name="akademi"/>
-    <br><br>
-    Maskapai: <br>
-    <input type="text" name="maskapai"/>
-    <br><br>
+<div class="d-flex flex-column justify-content-center" style="padding:30px;">
+        <div class="card" style="width:50%;align-self:center;">
+            <h3 class="card-header" style="text-align:center;background-color:#001b36;color:white;">Tambah Pilot</h3>
+            <div class="card-body">
+                <form th:action="@{/pilot/tambah}"th:object="${pilot}" method="POST">
+                    <input type="hidden" th:value="${nip}" name="nip">
+                    <div class="form-group">
+                        <label for="usr">Nama:</label>
+                        <input type="text" class="form-control" id="usr" name="nama" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nik">NIK:</label>
+                        <input type="number" class="form-control" id="nik" name="nik" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="tempat">Tempat Lahir:</label>
+                        <input type="text" class="form-control" id="tempat" name="tempatLahir" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="tgl">Tanggal Lahir:</label>
+                        <input type="date" class="form-control" id="tgl" name="tanggalLahir" required>
+                    </div>
 
-    <button type="submit">Submit</button>
-</form>
+                    <div class="form-group">
+                        <label for="jk"> Jenis Kelamin: </label>
+                        <select name="jenisKelamin" class="form-control" id="jk">
+
+                            <option value="1" th:text="Laki-laki"></option>
+                            <option value="2" th:text="Perempuan"></option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="select_list"> Sekolah: </label>
+                        <select th:field="*{akademi}" class="form-control" id="select_list">
+                            <option th:each="akademi : ${listAkademi}" th:value="${akademi.id}" th:text="${akademi.nama}"></option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="select_list1"> Maskapai </label>
+                        <select th:field="*{maskapai}" class="form-control" id="select_list1">
+                            <option th:each="maskapai : ${listMaskapai}" th:value="${maskapai.id}" th:text="${maskapai.namaMaskapai}"></option>
+                        </select>
+                    </div>
+
+                    <button class="btn btn-primary" type="submit">Submit</button>
+                </form>
+
+            </div>
+
+        </div>
+
+</div>
+
 </body>
 </html>

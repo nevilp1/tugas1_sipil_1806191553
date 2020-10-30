@@ -45,8 +45,8 @@ public class AkademiModel {
     private Long id;
 
     @NotNull
-    @Size(max=16)
-    @Column(name = "namaAkademi", unique = true)
+    @Size(max=255)
+    @Column(name = "nama", unique = true)
     private String nama;
 
     @NotNull

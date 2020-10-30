@@ -7,4 +7,5 @@ import java.util.List;
 public interface PilotService {
     List<PilotModel> getPilotList();
     void addPilot(PilotModel pilot);
+    String generateID(PilotModel pilot);
 }

@@ -46,12 +46,12 @@ public class MaskapaiModel {
 
     @NotNull
     @Size(max=16)
-    @Column(name = "kodeMaskapai", unique = true)
+    @Column(name = "kode", unique = true)
     private String kode;
 
     @NotNull
     @Size(max=255)
-    @Column(name="namaMaskapai")
+    @Column(name="nama")
     private String namaMaskapai;
 
     @OneToMany(mappedBy = "maskapai", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

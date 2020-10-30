@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 -- Dumping data for table `akademi`
 --
 
-INSERT INTO `sipil.akademi` (`id`, `lokasi`, `nama`) VALUES
+INSERT INTO `akademi` (`id`, `lokasi`, `nama`) VALUES
 (1, 'DKI Jakarta', 'Sekolah Terbang Tinggi'),
 (2, 'DKI Jakarta', 'Sekolah Angkasa Luar'),
 (3, 'Bekasi', 'Sekolah Galaksi'),
@@ -40,14 +40,7 @@ INSERT INTO `sipil.akademi` (`id`, `lokasi`, `nama`) VALUES
 -- Dumping data for table `maskapai`
 --
 
-INSERT INTO `sipil.maskapai` (`id`, `kode`, `nama`) VALUES
-(1, 'L100', 'LienAir'),
-(2, 'S129', 'SriAir'),
-(3, 'A144', 'AsiaAir'),
-(4, 'G144', 'GarudaAir'),
-(5, 'F149', 'FlyEmiret'),
-(6, 'B944', 'ButikAir'),
-(7, 'J444', 'JakAir');
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
