@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -23,8 +25,24 @@ public class PilotController {
 
     @GetMapping("/pilot")
     private String viewPilot(Model model){
-        List<PilotModel> listPilot = pilotService.getPilotList()
-        model.addAttribute()
-        return "view-pilot";
+        List<PilotModel> listPilot = pilotService.getPilotList();
+        model.addAttribute("listPilot", listPilot);
+        return "viewall-pilot";
     }
+    @GetMapping("/pilot/tambah")
+    private String formAddPilot(Model model){
+        model.addAttribute("pilot", new PilotModel());
+        return "form-tambah-pilot";
+    }
+
+    @PostMapping("/pilot/tambah")
+    private String tambahPilot(
+            @ModelAttribute PilotModel pilot, Model model){
+
+        pilotService.addPilot(pilot);
+        model.addAttribute("idPilot",pilot.getId());
+        return "tambah-pilot";
+    }
+
+
 }

@@ -18,4 +18,9 @@ public class PilotServiceImpl implements PilotService{
     public List<PilotModel> getPilotList() {
         return pilotDb.findByOrderById();
     }
+
+    @Override
+    public void addPilot(PilotModel pilot) {
+        pilotDb.save(pilot);
+    }
 }
