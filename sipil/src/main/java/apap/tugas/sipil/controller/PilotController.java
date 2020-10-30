@@ -101,5 +101,16 @@ public class PilotController {
 
         return "change-pilot-submit";
     }
+    @GetMapping("/pilot/delete/{nipPilot}")
+    private String deletePilot(
+            @PathVariable String nipPilot, Model model
+    ){
+        PilotModel pilot = pilotService.getPilotByNip(nipPilot);
+        model.addAttribute("nip", nipPilot);
+        pilotService.deletePilot(pilot);
+
+        return "delete-pilot";
+
+    }
 
 }

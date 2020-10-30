@@ -39,11 +39,12 @@
                 <td th:text="${pilot.nip}"></td>
                 <td th:text="${pilot.nik}"></td>
                 <td th:text="${pilot.tanggalLahir}"></td>
-                <td th:text="${pilot.jenisKelamin}"></td>
+                <td th:if="${pilot.jenisKelamin == 1}" >Laki-laki</td>
+                <td th:unless="${pilot.jenisKelamin == 1}">Perempuan</td>
                 <td>
                     <a th:href="@{/pilot/}+${pilot.nip}" class="btn btn-primary">View Pilot</a>
                     <a th:href="@{/pilot/ubah/}+${pilot.nip}" class="btn btn-success">Change Data</a>
-                    <a th:href="@{/pilot/delete/}+${pilot.id}" class="btn btn-danger">Delete</a>
+                    <a th:href="@{/pilot/delete/}+${pilot.nip}" class="btn btn-danger">Delete</a>
                 </td>
 
             </tr>

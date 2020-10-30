@@ -74,4 +74,9 @@ public class PilotServiceImpl implements PilotService{
             return null;
         }
     }
+
+    @Override
+    public void deletePilot(PilotModel pilot) {
+        pilotDb.deleteById(pilot.getId());
+    }
 }

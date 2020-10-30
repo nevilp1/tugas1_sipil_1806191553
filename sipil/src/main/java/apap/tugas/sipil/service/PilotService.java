@@ -14,4 +14,6 @@ public interface PilotService {
     PilotModel getPilotByNip(String nip);
 
     PilotModel updatePilot(PilotModel pilot);
+
+    void deletePilot(PilotModel pilot);
 }
