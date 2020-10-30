@@ -9,6 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "pilot")
@@ -129,5 +130,8 @@ public class PilotModel {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private AkademiModel akademi;
+
+    @OneToMany(mappedBy = "pilot")
+    private List<PilotPenerbanganModel> penerbanganPilot;
 
 }

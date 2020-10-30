@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Daftar Penerbangan</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+
+</head>
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+
+<div class="d-flex flex-column justify-content-center" style="padding:30px;">
+    <div class="p-2">
+        <div> <a href="/penerbangan/tambah" class="btn btn-dark">+ Tambah Penerbangan </a> </div>
+    </div>
+    <div class="p-2">
+        <div class="card">
+            <h3 class="card-header" style="text-align:center;background-color:#001b36;color:white;">Daftar Penerbangan</h3>
+
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Kode Penerbangan</th>
+                        <th>Waktu</th>
+                        <th>Kota Asal</th>
+                        <th>Kota Tujuan</th>
+                        <th>Action</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="penerbangan, iterationStatus : ${listPenerbangan}">
+                        <td th:text="${iterationStatus.count}"></td>
+                        <td th:text="${penerbangan.kode}"></td>
+                        <td th:text="${penerbangan.waktuPenerbangan}"></td>
+                        <td th:text="${penerbangan.kotaAsal}"></td>
+                        <td th:text="${penerbangan.kotaTujuan}"></td>
+                        <td>
+                            <a th:href="@{/penerbangan/detail/}+${penerbangan.id}" class="btn btn-primary">View Penerbangan</a>
+                            <a th:href="@{/penerbangan/ubah/}+${penerbangan.id}" class="btn btn-success">Change Data</a>
+                            <a th:href="@{/penerbangan/hapus}+${penerbangan.id}" class="btn btn-danger">Delete</a>
+                        </td>
+
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="container-fluid">
+                    <a href="/" class="btn btn-dark">Kembali</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>
