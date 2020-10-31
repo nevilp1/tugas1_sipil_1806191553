@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>500 Internal Server Error</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+
+<div class="container">
+    <div class="card justify-content-center" style="border-color:#001b36;margin:30px;height:200px;align-items:center;">
+        <h3>Terjadi kesalahan server, harap coba sesaat lagi (500 Internal Server Error)</h3>
+        <a href="/">Kembali ke Home</a>
+    </div>
+
+</div>
+</body>
+</body>
+</html>
