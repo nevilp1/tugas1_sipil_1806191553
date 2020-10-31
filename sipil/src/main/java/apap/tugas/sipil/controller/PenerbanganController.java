@@ -102,4 +102,16 @@ public class PenerbanganController {
         model.addAttribute("pilotPenerbangan", pilotPenerbangan);
         return "tambah-pilot-penerbangan";
     }
+    @GetMapping("/penerbangan/hapus/{idPenerbangan}")
+    private String hapusPenerbangan(
+            @PathVariable Long idPenerbangan,
+            Model model
+    ){
+        PenerbanganModel penerbangan = penerbanganService.getById(idPenerbangan);
+        model.addAttribute("kodePenerbangan", penerbangan.getKode());
+        boolean deleteCheck = penerbanganService.deletePenerbangan(penerbangan);
+
+        model.addAttribute("delete",deleteCheck);
+        return "delete-penerbangan";
+    }
 }

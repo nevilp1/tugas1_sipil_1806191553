@@ -46,4 +46,13 @@ public class PenerbanganServiceImpl implements PenerbanganService{
             return null;
         }
     }
+
+    @Override
+    public boolean deletePenerbangan(PenerbanganModel penerbangan) {
+        if(penerbanganDb.findById(penerbangan.getId()).get().getPenerbanganPilot().size() == 0) {
+            penerbanganDb.deleteById(penerbangan.getId());
+            return true;
+        }
+        return false;
+    }
 }

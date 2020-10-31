@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Penerbangan</title>
+
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+
+<div class="container" style="padding:30px;text-align:center;">
+    <div th:if="${delete}">
+    <h3 th:text="'Penerbangan dengan Kode ' + ${kodePenerbangan}"></h3>
+    <h3>berhasil dihapus</h3>
+    </div>
+    <div th:unless="${delete}">
+        <h3 th:text="'Penerbangan dengan Kode ' + ${kodePenerbangan}"></h3>
+        <h3>gagal dihapus karena terdapat pilot yang bertugas</h3>
+    </div>
+    <a th:href="@{/penerbangan}">Kembali ke Daftar Pilot</a>
+</div>
+
+
+
+
+</body>
+</html>

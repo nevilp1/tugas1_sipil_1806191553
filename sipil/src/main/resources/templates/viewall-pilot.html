@@ -42,9 +42,9 @@
                 <td th:if="${pilot.jenisKelamin == 1}" >Laki-laki</td>
                 <td th:unless="${pilot.jenisKelamin == 1}">Perempuan</td>
                 <td>
-                    <a th:href="@{/pilot/}+${pilot.nip}" class="btn btn-primary" style="background-color: #0c5460">View Pilot</a>
+                    <a th:href="@{/pilot/}+${pilot.nip}" class="btn btn-primary" style="background-color: #1a4a88">View Pilot</a>
                     <a th:href="@{/pilot/ubah/}+${pilot.nip}" class="btn btn-success" style="background-color: #001b36">Change Data</a>
-                    <a th:href="@{/pilot/delete/}+${pilot.nip}" class="btn btn-danger">Delete</a>
+                    <a th:href="@{/pilot/delete/}+${pilot.nip}" class="btn btn-primary" style="background-color:#310404" >Delete</a>
                 </td>
 
             </tr>
