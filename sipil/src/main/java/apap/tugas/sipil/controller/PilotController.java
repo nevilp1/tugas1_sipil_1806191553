@@ -146,7 +146,14 @@ public class PilotController {
     ){
         model.addAttribute("init", Boolean.FALSE);
         model.addAttribute("listPilot", pilotService.getByMaskapaiKode(kodeMaskapai));
-
+        model.addAttribute("listMaskapai",maskapaiService.getListMaskapai());
+        return "cari-terbanyak";
+    }
+    @GetMapping("/cari/pilot/penerbangan")
+    private String cariPilotTerbanyakPage(Model model
+    ){
+        model.addAttribute("init", Boolean.TRUE);
+        model.addAttribute("listMaskapai",maskapaiService.getListMaskapai());
         return "cari-terbanyak";
     }
 
