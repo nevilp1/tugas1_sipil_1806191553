@@ -131,6 +131,14 @@ public class PilotModel {
     @JsonIgnore
     private AkademiModel akademi;
 
+    public List<PilotPenerbanganModel> getPenerbanganPilot() {
+        return penerbanganPilot;
+    }
+
+    public void setPenerbanganPilot(List<PilotPenerbanganModel> penerbanganPilot) {
+        this.penerbanganPilot = penerbanganPilot;
+    }
+
     @OneToMany(mappedBy = "pilot")
     private List<PilotPenerbanganModel> penerbanganPilot;
 
