@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Change Data Penerbangan</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+
+<div class="d-flex flex-column justify-content-center" style="padding:30px;">
+    <div class="card" style="width:50%;align-self:center;">
+        <h3 class="card-header" style="text-align:center;background-color:#001b36;color:white;">Ubah Penerbangan</h3>
+        <div class="card-body">
+            <form th:action="@{/penerbangan/ubah/}+ '${id}' "th:object="${penerbangan}" method="POST">
+                <input type="hidden" th:field="*{id}">
+
+                <div class="form-group">
+                    <label for="kode">Kode:</label>
+                    <input type="text" class="form-control" id="kode" name="kode" th:value="*{kode}"required>
+                </div>
+                <div class="form-group">
+                    <label for="tgl">Waktu:</label>
+                    <input type="datetime-local" class="form-control" id="tgl" name="waktuPenerbangan" th:value="*{waktuPenerbangan}" required>
+                </div>
+                <div class="form-group">
+                    <label for="kota">Kota Asal:</label>
+                    <input type="text" class="form-control" id="kota" name="kotaAsal" th:value="*{kotaAsal}" required>
+                </div>
+                <div class="form-group">
+                    <label for="kota1">Kota Tujuan:</label>
+                    <input type="text" class="form-control" id="kota1" name="kotaTujuan" th:value="*{kotaTujuan}" required>
+                </div>
+
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </form>
+        </div>
+
+    </div>
+
+</div>
+</body>
+</html>
