@@ -1,15 +1,13 @@
 package apap.tugas.sipil.service;
 
 import apap.tugas.sipil.model.PilotModel;
+import apap.tugas.sipil.model.PilotPenerbanganModel;
 import apap.tugas.sipil.repository.PilotDb;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
 import javax.transaction.Transactional;
-import java.util.Date;
-import java.util.List;
 
 @Service
 @Transactional
@@ -78,5 +76,50 @@ public class PilotServiceImpl implements PilotService{
     @Override
     public void deletePilot(PilotModel pilot) {
         pilotDb.deleteById(pilot.getId());
+    }
+
+    @Override
+    public List<PilotModel> getPilotByKodeDanId(String kode, Long id) {
+        return pilotDb.findAllByAkademi_IdOrMaskapai_Kode(id,kode);
+    }
+
+    @Override
+    public List<PilotModel> getByMaskapaiKode(String kode) {
+         List<PilotModel> listPilot = pilotDb.findAllByMaskapai_Kode(kode);
+        ArrayList<PilotModel> sortedList = new ArrayList<PilotModel>();
+         HashMap<PilotModel, Integer> map = new HashMap<PilotModel, Integer>();
+         for(PilotModel p : listPilot){
+             map.put(p, p.getPenerbanganPilot().size());
+         }
+         HashMap<PilotModel, Integer> sortedMap = sortByValue(map);
+
+        for (Map.Entry<PilotModel, Integer> entry : sortedMap.entrySet()) {
+            sortedList.add(entry.getKey());
+        }
+
+         return sortedList;
+    }
+    // function to sort hashmap by values
+    public HashMap<PilotModel, Integer> sortByValue(HashMap<PilotModel, Integer> hm)
+    {
+        // Create a list from elements of HashMap
+        List<Map.Entry<PilotModel, Integer> > list =
+                new LinkedList<Map.Entry<PilotModel, Integer> >(hm.entrySet());
+
+        // Sort the list
+        Collections.sort(list, new Comparator<Map.Entry<PilotModel, Integer> >() {
+            public int compare(Map.Entry<PilotModel, Integer> o1,
+                               Map.Entry<PilotModel, Integer> o2)
+            {
+                return (o1.getValue()).compareTo(o2.getValue());
+            }
+        });
+
+        // put data from sorted list to hashmap
+        HashMap<PilotModel, Integer> temp = new LinkedHashMap<PilotModel, Integer>();
+        for (Map.Entry<PilotModel, Integer> aa : list) {
+            temp.put(aa.getKey(), aa.getValue());
+        }
+        return temp;
     }
 }

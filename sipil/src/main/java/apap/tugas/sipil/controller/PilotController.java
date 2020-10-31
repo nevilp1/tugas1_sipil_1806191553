@@ -10,12 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class PilotController {
@@ -112,5 +110,45 @@ public class PilotController {
         return "delete-pilot";
 
     }
+    @GetMapping("/cari")
+    private String cariPilot(Model model){
+        Long idSekolah = Long.valueOf(1);
+        String kode = "l100";
+
+        model.addAttribute("init", Boolean.TRUE);
+        model.addAttribute("listAkademi", akademiService.getAkademiList());
+        model.addAttribute("listMaskapai",maskapaiService.getListMaskapai());
+
+        return "cari";
+    }
+    @GetMapping("/cari/pilot")
+    private String cariPilotSubmit(
+            @RequestParam Optional<String> kodeMaskapai,
+            @RequestParam Optional<Long> idSekolah,
+            Model model
+    ){
+        if(kodeMaskapai.isPresent() && idSekolah.isPresent()){
+            model.addAttribute("listPilot",pilotService.getPilotByKodeDanId(kodeMaskapai.get(),idSekolah.get()));
+        }else if(kodeMaskapai.isPresent()){
+            model.addAttribute("listPilot", pilotService.getPilotByKodeDanId(kodeMaskapai.get(),null));
+        }else if(idSekolah.isPresent()){
+            model.addAttribute("listPilot", pilotService.getPilotByKodeDanId(null, idSekolah.get()));
+        }
+        model.addAttribute("init", Boolean.FALSE);
+        model.addAttribute("listAkademi", akademiService.getAkademiList());
+        model.addAttribute("listMaskapai",maskapaiService.getListMaskapai());
+
+        return "cari";
+    }
+    @GetMapping("/cari/pilot/penerbangan-terbanyak")
+    private String cariPilotTerbanyak(
+            @RequestParam String kodeMaskapai, Model model
+    ){
+        model.addAttribute("init", Boolean.FALSE);
+        model.addAttribute("listPilot", pilotService.getByMaskapaiKode(kodeMaskapai));
+
+        return "cari-terbanyak";
+    }
+
 
 }

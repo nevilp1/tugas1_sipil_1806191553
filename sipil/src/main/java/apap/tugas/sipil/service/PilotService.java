@@ -16,4 +16,8 @@ public interface PilotService {
     PilotModel updatePilot(PilotModel pilot);
 
     void deletePilot(PilotModel pilot);
+
+    List<PilotModel> getPilotByKodeDanId(String kode, Long id);
+
+    List<PilotModel> getByMaskapaiKode(String kode);
 }
